@@ -25,9 +25,15 @@ public class Category {
 
     /*셀프 연관관계 매핑 => 이름만 내거지 다른 연관관계와 같다고 생각하면 된다*/
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id")
+    @JoinColumn(name = "parent_id") //FK 이름 지정
     private Category parent; //내 부모
 
     @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>(); //내 자식
+
+    //==양방향 연관관계 편의 메서드==//
+    public void addChildCategory(Category child) {
+        this.child.add(child);
+        child.setParent(this);
+    }
 }
