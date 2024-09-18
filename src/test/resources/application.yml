@@ -1,0 +1,20 @@
+spring:
+#  datasource:
+#    url: jdbc:h2:mem:test
+#    hikari:
+#      username: sa
+#      password:
+#      driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+##        show-sql: true System.out 에 하이버네이트 실행 SQL을 남기는 거라 쓰지말자.
+#        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace #스프링 부트 3.x, hibernate6
