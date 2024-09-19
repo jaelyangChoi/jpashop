@@ -83,6 +83,7 @@ public class Order {
     //==조회 로직==//
     /**
      * 전체 주문 가격 조회
+     * (실무에서는 주로 주문에 전체 주문 가격 필드를 두고 역정규화 한다)
      */
     public int getTotalPrice() {
         return orderItems.stream()
