@@ -3,6 +3,7 @@ package jpabook.jpashop.domain.item;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jpabook.jpashop.controller.BookForm;
+import jpabook.jpashop.service.UpdateItemDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,5 +28,12 @@ public class Book extends Item {
         book.setIsbn(form.getIsbn());
 
         return book;
+    }
+
+    public void update(UpdateItemDto param) {
+        this.setName(param.getName());
+        this.setPrice(param.getPrice());
+        this.setStockQuantity(param.getStockQuantity());
+        this.setAuthor(param.getAuthor());
     }
 }

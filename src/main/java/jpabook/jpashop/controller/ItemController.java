@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.service.ItemService;
+import jpabook.jpashop.service.UpdateItemDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,8 +66,8 @@ public class ItemController {
 
     @PostMapping("/items/{itemId}/edit")
     public String updateItem(@ModelAttribute BookForm form) {
-        Book book = Book.createBook(form);
-        itemService.saveItem(book);
+        itemService.updateItem(form.getId(), new UpdateItemDto(form));
         return "redirect:/items";
     }
+
 }

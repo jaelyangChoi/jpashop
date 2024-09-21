@@ -3,6 +3,7 @@ package jpabook.jpashop.domain.item;
 import jakarta.persistence.*;
 import jpabook.jpashop.domain.Category;
 import jpabook.jpashop.exception.NotEnoughStockException;
+import jpabook.jpashop.service.UpdateItemDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +29,6 @@ public abstract class Item {
     private List<Category> categories = new ArrayList<>();
 
     //==비즈니스 로직==//
-
     /**
      * stock 증가
      */
