@@ -22,7 +22,7 @@ public class MemberController {
 
     @GetMapping("/members/new")
     public String createForm(Model model) {
-        model.addAttribute("memberForm", new MemberForm()); //빈 껍데기 들고 가는 이유:
+        model.addAttribute("memberForm", new MemberForm()); //빈 껍데기 들고 가는 이유: 타임리프에서 html 생성 시 활용
         return "members/createMemberForm";
     }
 
