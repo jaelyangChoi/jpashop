@@ -28,9 +28,9 @@ body {
     border-top: 1px solid #e5e5e5;
 }
 /* Customize container */
-@media (min-width: 768px) {
+@media (min-width: 1068px) {
     .container {
-        max-width: 730px;
+        max-width: 1030px;
     }
 }
 .container-narrow > hr {
