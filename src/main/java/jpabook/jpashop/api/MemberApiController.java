@@ -58,7 +58,9 @@ public class MemberApiController {
         return new CreateMemberResponse(id);
     }
 
-    @PutMapping("/api/v2/members/{id}")
+    /* PUT은 전체 업데이트를 할 때 사용.
+    부분 업데이트를 하려면 PATCH를 사용하거나 POST를 사용하는 것이 REST 스타일에 맞다. */
+    @PatchMapping("/api/v2/members/{id}")
     public UpdateMemberResponse updateMember(@PathVariable("id") Long id,
                                              @RequestBody @Valid UpdateMemberRequest request) {
         memberService.update(id, request.getName());
