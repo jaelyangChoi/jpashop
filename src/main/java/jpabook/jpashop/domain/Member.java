@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,8 @@ public class Member {
     @Id @GeneratedValue
     @Column(name = "member_id")
     private Long id;
+
+    @NotEmpty
     private String name;
 
     @Embedded
