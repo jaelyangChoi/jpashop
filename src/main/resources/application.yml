@@ -8,7 +8,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
 #        show-sql: true System.out 에 하이버네이트 실행 SQL을 남기는 거라 쓰지말자.
