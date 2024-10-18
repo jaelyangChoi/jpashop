@@ -10,6 +10,7 @@ import jpabook.jpashop.repository.order.query.OrderFlatDto;
 import jpabook.jpashop.repository.order.query.OrderItemQueryDto;
 import jpabook.jpashop.repository.order.query.OrderQueryDto;
 import jpabook.jpashop.repository.order.query.OrderQueryRepository;
+import jpabook.jpashop.service.queryService.OrderQueryService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,10 +28,12 @@ public class OrderApiController {
 
     private final OrderRepository orderRepository;
     private final OrderQueryRepository orderQueryRepository;
+    private final OrderQueryService orderQueryService;
 
     @GetMapping("/api/v1/orders")
     public List<Order> ordersV1() {
         List<Order> orders = orderRepository.findAllByString(new OrderSearch());
+        //지연로딩으로 프록시 초기화
         for (Order order : orders) {
             order.getMember().getName();
             order.getDelivery().getAddress();
@@ -42,10 +45,7 @@ public class OrderApiController {
 
     @GetMapping("/api/v2/orders")
     public List<OrderDto> ordersV2() {
-        List<Order> orders = orderRepository.findAllByString(new OrderSearch());
-        return orders.stream()
-                .map(OrderDto::new)
-                .toList();
+        return orderQueryService.order(); //커멘드와 쿼리 분리
     }
 
     @GetMapping("/api/v3/orders")
@@ -96,7 +96,7 @@ public class OrderApiController {
     }
 
     @Data
-    static class OrderDto {
+    public static class OrderDto {
         private Long orderId;
         private String name;
         private LocalDateTime orderDate;
